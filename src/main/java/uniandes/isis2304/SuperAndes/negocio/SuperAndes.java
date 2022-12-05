@@ -190,6 +190,13 @@ public class SuperAndes
 		}
 	}
 
+	public List<Object[]> consultarConsumoO( long cod,String fecha1,String fecha2, String arg,String orden){
+		log.info ("Consultando consumo: " + cod);
+		List<Object[]> consumo = pp.consultarConsumoO(cod, fecha1, fecha2, arg, orden);
+		log.info ("Consumo consultado: " + consumo);
+		return consumo;
+	}
+
 	public OfertaDescuento adicionarOfertaDescuento(String codBarras, int unidades, String fecha, double porcentaje){
 		log.info ("Adicionando oferta descuento: " + codBarras);
 		OfertaDescuento oferta = pp.adicionarOfertaDescuento(codBarras, unidades, fecha, porcentaje);

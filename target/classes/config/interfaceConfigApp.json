@@ -210,6 +210,16 @@
 
 			]
 		},
+		{
+			"menuTitle": "it4",
+			"options":
+			[
+				{
+					"label": "RFC10-Consultar Consumo en SuperAndes Ordenamiento",
+					"event": "consultarConsumoO"
+				}
+			]
+		},
 		{ "menuTitle": "Documentación",
 		  "options":
 			[
@@ -243,7 +253,8 @@
 					"event": "acercaDe"
 				}
 			]
-		}		
+		}
+
 		
 	]
 }
