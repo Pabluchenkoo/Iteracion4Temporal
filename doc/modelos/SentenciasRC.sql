@@ -168,3 +168,24 @@ GROUP BY factura.numdoc , cliente.nombre
 HAVING COUNT(*) > 2;
 
 
+
+
+
+--REQCONSULTA 11 IT4
+SELECT NUMDOC,TIPODOC,NOMBRE,
+       CORREO,MEDIOPAGO,PUNTOS, SUM(cantidades) FROM
+    (
+        (SELECT  S_CLIENTE.NUMDOC,S_CLIENTE.TIPODOC,S_CLIENTE.NOMBRE,
+                 S_CLIENTE.CORREO,S_CLIENTE.MEDIOPAGO,S_CLIENTE.PUNTOS, productoVendido.cantidad AS cantidades FROM S_CLIENTE
+                                                                                                                        JOIN S_FACTURA factura ON factura.numdoc = S_CLIENTE.numdoc
+                                                                                                                        JOIN S_PRODUCTOVENDIDO productoVendido ON productoVendido.idFactura = factura.id)
+            MINUS
+            (SELECT S_CLIENTE.NUMDOC,S_CLIENTE.TIPODOC,S_CLIENTE.NOMBRE,
+S_CLIENTE.CORREO,S_CLIENTE.MEDIOPAGO,S_CLIENTE.PUNTOS, productoVendido.cantidad FROM S_CLIENTE
+JOIN S_FACTURA factura ON factura.numdoc = S_CLIENTE.numdoc
+JOIN S_PRODUCTOVENDIDO productoVendido ON productoVendido.idFactura = factura.id
+WHERE factura.fecha BETWEEN '22/01/20' AND '30/09/30' AND productoVendido.CODIGODEBARRAS = '9790336344206')
+        )
+GROUP BY NUMDOC,TIPODOC,NOMBRE,
+         CORREO,MEDIOPAGO,PUNTOS
+ORDER BY nombre ASC;
