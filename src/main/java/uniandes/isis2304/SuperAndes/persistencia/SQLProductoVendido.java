@@ -79,5 +79,36 @@ public class SQLProductoVendido {
             q.executeUnique();
     }
 
+    public List<Object[]> consultarConsumoO(PersistenceManager pm, long cod,String fecha1,String fecha2, String arg,String orden){
+        if(arg=="Nombre")
+        {
+            arg="nombre";
+        }
+        if(arg=="Documento")
+        {
+            arg="numdoc";
+        }
+        if(orden=="Ascendente")
+        {
+            orden="ASC";
+        }
+        if(orden=="Descendente")
+        {
+            orden="DESC";
+        }
+        {
+            arg="nombre";
+        }
+        String sql = "select NUMDOC, NOMBRE, CORREO from ";
+        sql += "(select DISTINCT NUMDOC AS CLIENTE from S_FACTURA ";
+        sql += "inner join S_PRODUCTOVENDIDO  ON ";
+        sql += "S_FACTURA.ID = S_PRODUCTOVENDIDO.IDFACTURA ";
+        sql += " WHERE CODIGODEBARRAS = '"+cod+"' AND   FECHA BETWEEN "+ "TO_DATE ('"+ fecha1 +"','YYYY-MM-DD') " + "AND " + "TO_DATE ('"+ fecha2 +"','YYYY-MM-DD'))";
+        sql += " INNER JOIN S_CLIENTE ON S_CLIENTE.NUMDOC = CLIENTE" ;
+        sql += " ORDER BY "+arg+" "+orden;
+        Query q = pm.newQuery(SQL, sql);
+        return q.executeList();
+    }
+
 
 }

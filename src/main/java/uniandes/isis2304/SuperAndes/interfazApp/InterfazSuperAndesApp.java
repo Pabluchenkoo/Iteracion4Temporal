@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -416,6 +417,49 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 	 * 			Requerimientos funcionales 15 al 17
 	 *			Iteración 3
 	 *****************************************************************/
+
+	public void consultarConsumoO()
+	{
+		try{
+
+			String codigo = JOptionPane.showInputDialog (this, "Codigo del producto?", "Consultar consumo de un producto", JOptionPane.QUESTION_MESSAGE);
+			String fecha1 = JOptionPane.showInputDialog (this, "Fecha inicial? - YYYY-MM-DD",
+					"Consultar consumo de un producto", JOptionPane.QUESTION_MESSAGE);
+
+			String fecha2 = JOptionPane.showInputDialog (this, "Fecha final? - YYYY-MM-DD",
+					"Consultar consumo de un producto", JOptionPane.QUESTION_MESSAGE);
+			String arg = (String) JOptionPane.showInputDialog(this, "Seleccione el parametro de ordenamiento", "Input", JOptionPane.QUESTION_MESSAGE,
+					null, new Object[] {"Nombre", "Correo","Documento"} , "Nombre");
+			String orden = (String) JOptionPane.showInputDialog(this, "En que orden?", "Input", JOptionPane.QUESTION_MESSAGE,
+					null, new Object[] {"Ascendente","Descendente"} , "Descendente");
+			if (codigo != null && fecha1 != null && fecha2 != null)
+			{
+				long cod = Long.parseLong(codigo);
+				List<Object[]> consumo = superAndes.consultarConsumoO(cod, fecha1, fecha2, arg, orden);
+				String rest = "Documento" + "		" + "Nombre" + "		" + "Correo"+"\n\n";
+				for ( Object[] cliente:consumo)
+				{
+					String nombre = (String) cliente[1];
+					String correo = (String) cliente[2];
+					BigDecimal documentoB = (BigDecimal) cliente[0];
+					int documento = documentoB.intValue();
+					rest += documento + "		" + nombre + "		" + correo + "\n";
+				}
+				panelDatos.actualizarInterfaz(rest);
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+
+
+	}
 
 	public void solicitarCarrito()
 	{

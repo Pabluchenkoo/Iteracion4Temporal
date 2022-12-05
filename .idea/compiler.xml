@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="iteracion2temporal" />
         <module name="iteracion3temporal" />
+        <module name="Iteracion4Temporal" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
