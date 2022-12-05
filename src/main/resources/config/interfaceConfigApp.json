@@ -1,0 +1,250 @@
+{
+	"title": "Aplicación transaccional de Parranderos Uniandes",
+	"frameH": 600,
+	"frameW": 800,
+	"bannerPath": "./src/main/resources/config/logo.png",
+	"menuBar":
+	[
+
+		{ "menuTitle": "Sucursal",
+		  "options":
+			[
+				{
+					"label": "RF2-Registrar ",
+					"event": "registrarSucursal"
+				},
+				{
+					"label": "RF4-Registrar Bodega",
+					"event": "registrarBodega"
+				},
+				{
+					"label": "RF5-Registrar Estante",
+					"event": "registrarEstante"
+				},
+				{
+					"label": "RFC1-Dinero Recolectado En Periodo Tiempo",
+					"event": "dineroRecolectadoTiempo"
+				},
+				{
+					"label": "RFC1-Dinero Recolectado Anio",
+					"event": "dineroRecolectadoAnio"
+				},
+				{
+					"label": "RF14-registrar venta producto",
+					"event": "realizarCompra"
+				},
+				{
+					"label": "RF13-Aprovisionar Estante de productos",
+					"event": "aprovisionarEstante"
+				},
+				{
+					"label": "RFC3-indice de ocupacion de estantes y bodegas",
+					"event": "indiceOcupacion"
+				},
+				{
+					"label": "RF18-Mostrar Carrito",
+					"event": "mostrarCarrito"
+				},
+				{
+					"label": "RF18-Pagar Carrito",
+					"event": "pagarCompra"
+				},
+				{
+					"label": "RF19-Abandonar Carrito",
+					"event": "abandonarCarrito"
+				},
+				{
+					"label": "RF20-Recolectar Productos Abandonados",
+					"event": "recolectarAbandonados"
+				},
+				{
+					"label": "RF21-Consolidar Pedido",
+					"event": "consolidarPedido"
+				},
+				{
+					"label": "RF22-Recibir Pedido Consolidado",
+					"event": "recibirPedidoConsolidado"
+				}
+			]
+		},
+		{ "menuTitle": "Usuarios",
+			"options":
+			[
+				{
+					"label": "RF1-Registrar Rol",
+					"event": "registrarRol"
+				},
+				{
+					"label": "RF3-Registrar nuevo Usuario",
+					"event": "registrarUsuario"
+				}
+
+			]
+		},
+		{ "menuTitle": "Proveedores & Clientes",
+			"options":
+			[
+				{
+					"label": "RF6-Registrar Proveedor",
+					"event": "registrarProveedor"
+				},
+				{
+					"label": "RF8-Registrar Cliente",
+					"event": "registrarCliente"
+				},
+				{
+					"label": "RFC5- compras hechas a un proveedor",
+					"event": "comprasHechasProveedor"
+				},
+				{
+					"label": "RFC6- mostrar compras de un cliente en un periodo de tiempo",
+					"event": "comprasClientePeriodo"
+				}
+
+			]
+		},
+		{ "menuTitle": "Productos",
+			"options":
+			[
+				{
+					"label": "RFC4- productos por rangos de precio",
+					"event": "productosPorPrecio"
+				},
+				{
+					"label": "RFC4- productos por fecha de vencimiento",
+					"event": "productosPorFechaVencimiento"
+				},
+				{
+					"label": "RFC4- productos por proveedor",
+					"event": "productosPorProveedor"
+				},
+				{
+					"label": "RFC4- productos disponibles en una ciudad",
+					"event": "productosDisponiblesCiudad"
+				},
+				{
+					"label": "RFC4- productos disponibles en una sucursal",
+					"event": "productosDisponiblesSucursal"
+				},
+				{
+					"label": "RFC4- productos por categoria",
+					"event": "productosPorCategoria"
+				},
+				{
+					"label": "RFC4- productos vendido mas de X veces",
+					"event": "productosVendidosMasDeXVeces"
+				}
+
+
+
+			]
+		},
+		{ "menuTitle": "Promociones",
+			"options":
+			[
+				{
+					"label": "RF9-Registrar Promocion",
+					"event": "registrarPromocion"
+				},
+				{
+					"label": "RF10-Finalizar Promocion",
+					"event": "finalizarPromociones"
+				},
+				{
+					"label": "RFC2-20promos mas vendidas",
+					"event": "promosMasVendidas"
+				}
+
+
+			]
+		},
+		{ "menuTitle": "Pedidos",
+			"options":
+			[
+				{
+					"label": "RF11-Registrar Pedido a Proveedor",
+					"event": "registrarPedidoProveedor"
+				},
+				{
+					"label": "RF12-Registrar llegada de Pedido",
+					"event": "recibirPedido"
+				}
+
+			]
+		},
+		{ "menuTitle": "it3",
+			"options":
+			[
+				{
+					"label": "RF15-Solicitar un carrito de compras",
+					"event": "solicitarCarrito"
+				},
+				{
+					"label": "RF16-Adicionar un producto al carrito de compras",
+					"event": "adicionarProductoCarrito"
+				},
+				{
+					"label": "RF17-Devolver un producto del carrito de compras",
+					"event": "devolverProductoCarrito"
+				},
+				{
+					"label": "RF18-Realizar el pago de un carrito de compras",
+					"event": "pagarCarrito"
+				},
+				{
+					"label": "RF19-Abandonar un carrito de compras",
+					"event": "limpiarBD"
+				},
+				{
+					"label": "RFC7-Analizar la operacion de SuperAndes",
+					"event": "analizarSuperAndes"
+				},
+				{
+					"label": "RFC8-Encontrar los clientes fecuentes",
+					"event": "encontrarClientesFrecuentes"
+				},
+				{
+					"label": "RFC9-Encontrar los productos que no tienen mucha demanda",
+					"event": "encontrarProductosPocaDemanda"
+				}
+
+			]
+		},
+		{ "menuTitle": "Documentación",
+		  "options":
+			[
+				{
+					"label": "Presentación general",
+					"event": "mostrarPresentacionGeneral"
+				},
+				{
+					"label": "Modelo conceptual",
+					"event": "mostrarModeloConceptual"
+				},
+				{
+					"label": "Esquema de la BD",
+					"event": "mostrarEsquemaBD"
+				},
+				{
+					"label": "Script creación de la BD",
+					"event": "mostrarScriptBD"
+				},
+				{
+					"label": "Arquitectura de referencia",
+					"event": "mostrarArqRef"
+				}
+			]
+		},		
+		{ "menuTitle": "Acerca de ...",
+		  "options":
+			[
+				{
+					"label": "Acerca de ...",
+					"event": "acercaDe"
+				}
+			]
+		}		
+		
+	]
+}
+	

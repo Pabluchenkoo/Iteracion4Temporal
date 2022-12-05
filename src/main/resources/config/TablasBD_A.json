@@ -1,0 +1,30 @@
+{
+	"title": "Nombres de las tablas de SuperAndes Uniandes para la aplicación A",
+	"unidadPersistencia": "SuperAndes",
+	"tablas":
+	[
+		"SUPERANDES_SEQUENCE",
+		"S_SUPERMERCADO",
+		"S_SUCURSAL",
+		"S_CATEGORIA",
+		"S_ALMACENAMIENTO",
+		"S_LOTE",
+		"S_PRESENTACION",
+		"S_PRODUCTO",
+		"S_OFERTA",
+		"S_CLIENTE",
+		"S_FACTURA",
+		"S_PRODUCTOVENDIDO",
+		"S_LOCALVETAS",
+		"S_ROL",
+		"S_USUARIO",
+		"S_PROVEEDOR",
+		"S_ORDENPEDIDO",
+		"S_PRODUCTOPROVEEDOR",
+		"S_ORDENENTREGADA",
+		"S_OFERTA_NXM",
+		"S_OFERTADESCUENTO",
+		"S_OFERTA_PAGUEXLLEVEY",
+		"S_OFERTA_MENORQUESUMA2"
+	]
+}
