@@ -528,6 +528,16 @@ public class PersistenciaSuperAndes
 		return sqlProductoVendido.consultarConsumoO(pmf.getPersistenceManager(), cod, fecha1, fecha2, arg, orden);
 	}
 
+	public List<Object[]> consultarConsumoA( long cod,String fecha1,String fecha2, String arg,String orden){
+		return sqlProductoVendido.consultarConsumoA(pmf.getPersistenceManager(), cod, fecha1, fecha2, arg, orden);
+	}
+
+	public List<Object[]> buenosClientes( ){
+		return sqlProductoVendido.buenosClientes(pmf.getPersistenceManager());
+	}
+	public List<Object[]> buenosClientes2( ){
+		return sqlProductoVendido.buenosClientes2(pmf.getPersistenceManager());
+	}
 	public OfertaNxM adicionarOfertaNxM( String codBarras, int unidades, String fecha, int n, int m)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();

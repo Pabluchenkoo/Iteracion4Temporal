@@ -110,5 +110,51 @@ public class SQLProductoVendido {
         return q.executeList();
     }
 
+    public List<Object[]> consultarConsumoA(PersistenceManager pm, long cod,String fecha1,String fecha2, String arg,String orden){
+        if(arg=="Nombre")
+        {
+            arg="nombre";
+        }
+        if(arg=="Documento")
+        {
+            arg="numdoc";
+        }
+        if(orden=="Ascendente")
+        {
+            orden="ASC";
+        }
+        if(orden=="Descendente")
+        {
+            orden="DESC";
+        }
+        String sql = "select NUMDOC, NOMBRE, CORREO, CANTIDAD from ";
+        sql += "(select NUMDOC AS CLIENTE  , SUM(CANTIDAD) AS CANTIDAD from S_FACTURA ";
+        sql += "inner join S_PRODUCTOVENDIDO  ON ";
+        sql += "S_FACTURA.ID = S_PRODUCTOVENDIDO.IDFACTURA ";
+        sql += " WHERE CODIGODEBARRAS = '"+cod+"' AND   FECHA BETWEEN "+ "TO_DATE ('"+ fecha1 +"','YYYY-MM-DD') " + "AND " + "TO_DATE ('"+ fecha2 +"','YYYY-MM-DD') GROUP BY NUMDOC)";
+        sql += " INNER JOIN S_CLIENTE ON S_CLIENTE.NUMDOC = CLIENTE" ;
+        sql += " ORDER BY "+arg+" "+orden;
+        Query q = pm.newQuery(SQL, sql);
+        return q.executeList();
+    }
+    public List<Object[]> buenosClientes(PersistenceManager pm){
+        String sql = "select distinct s_cliente.NUMDOC, s_cliente.NOMBRE, s_cliente.CORREO from s_productovendido ";
+        sql += "inner join (select codigodebarras as cb from  ";
+        sql += "s_producto inner join s_presentacion on s_presentacion.id=s_producto.idpresentacion where precioporunidad>=100000) ";
+        sql += "on cb = s_productovendido.codigodebarras inner join s_factura on s_factura.id = idfactura ";
+        sql += "inner join s_cliente on s_cliente.numdoc = s_factura.numdoc";
+        Query q = pm.newQuery(SQL, sql);
+        return q.executeList();
+    }
 
-}
+    public List<Object[]> buenosClientes2(PersistenceManager pm){
+        String sql = "select distinct s_cliente.NUMDOC, s_cliente.NOMBRE, s_cliente.CORREO from s_productovendido ";
+        sql += "inner join (select codigodebarras as cb from  ";
+        sql += "s_producto inner join s_categoria on s_categoria.id=s_producto.idcategoria where s_categoria.nombre='Tools' or s_categoria.nombre='Electronics')  ";
+        sql += "on cb = s_productovendido.codigodebarras inner join s_factura on s_factura.id = idfactura ";
+        sql += "inner join s_cliente on s_cliente.numdoc = s_factura.numdoc";
+        Query q = pm.newQuery(SQL, sql);
+        return q.executeList();
+    }
+
+    }

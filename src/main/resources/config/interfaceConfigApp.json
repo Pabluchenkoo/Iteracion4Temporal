@@ -217,6 +217,14 @@
 				{
 					"label": "RFC10-Consultar Consumo en SuperAndes Ordenamiento",
 					"event": "consultarConsumoO"
+				},
+				{
+					"label": "RFC10-Consultar Consumo en SuperAndes Agrupamiento",
+					"event": "consultarConsumoA"
+				},
+				{
+					"label": "RFC13-Encontrar buenos clientes",
+					"event": "buenosClientes"
 				}
 			]
 		},
