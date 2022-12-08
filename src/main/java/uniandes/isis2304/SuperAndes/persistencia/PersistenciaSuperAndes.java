@@ -524,9 +524,23 @@ public class PersistenciaSuperAndes
 		}
 	}
 
+
+
+
 	public List<Object[]> consultarConsumoO( long cod,String fecha1,String fecha2, String arg,String orden){
 		return sqlProductoVendido.consultarConsumoO(pmf.getPersistenceManager(), cod, fecha1, fecha2, arg, orden);
 	}
+
+	/* ****************************************************************
+	 * 			Requerimientos de consulta 11 al 12
+	 *			Iteración 4 - it4
+	 *****************************************************************/
+	public List<Object[]> consultarConsumoV2(String codigoDeBarras, String fecha1, String fecha2, String orden) {
+		return sqlProductoVendido.consultarConsumoV2(pmf.getPersistenceManager(), codigoDeBarras, fecha1, fecha2, orden);
+	}
+
+
+
 
 	public OfertaNxM adicionarOfertaNxM( String codBarras, int unidades, String fecha, int n, int m)
 	{

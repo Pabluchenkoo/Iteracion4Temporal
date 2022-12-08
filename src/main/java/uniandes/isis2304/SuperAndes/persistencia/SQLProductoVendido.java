@@ -111,4 +111,37 @@ public class SQLProductoVendido {
     }
 
 
+    public List<Object[]> consultarConsumoV2(PersistenceManager persistenceManager, String codigoDeBarras, String fecha1, String fecha2, String orden) {
+        if(orden.equals("nombre"))
+        {
+            orden="NOMBRE";
+        }
+        if(orden.equals("cantidad"))
+        {
+            orden="CANTIDAD";
+        }
+        if(orden.equals("puntos"))
+        {
+            orden="PUNTOS";
+        }
+
+        String sql = "SELECT NUMDOC, TIPODOC, NOMBRE, CORREO, MEDIOPAGO, PUNTOS, SUM(cantidades) AS cantidad ";
+        sql += "FROM ( (SELECT S_CLIENTE.NUMDOC, S_CLIENTE.TIPODOC, S_CLIENTE.NOMBRE,S_CLIENTE.CORREO, ";
+        sql += "S_CLIENTE.MEDIOPAGO, S_CLIENTE.PUNTOS, productoVendido.cantidad AS cantidades ";
+        sql += "FROM S_CLIENTE ";
+        sql += "JOIN S_FACTURA factura ON factura.numdoc = S_CLIENTE.numdoc ";
+        sql += "JOIN S_PRODUCTOVENDIDO productoVendido ON productoVendido.idFactura = factura.id) ";
+        sql += "MINUS ";
+        sql += "(SELECT S_CLIENTE.NUMDOC, S_CLIENTE.TIPODOC,S_CLIENTE.NOMBRE, S_CLIENTE.CORREO, ";
+        sql += "S_CLIENTE.MEDIOPAGO,S_CLIENTE.PUNTOS, productoVendido.cantidad AS cantidades ";
+        sql += "FROM S_CLIENTE ";
+        sql += "JOIN S_FACTURA factura ON factura.numdoc = S_CLIENTE.numdoc ";
+        sql += "JOIN S_PRODUCTOVENDIDO productoVendido ON productoVendido.idFactura = factura.id ";
+        sql += "WHERE factura.fecha BETWEEN TO_DATE('" + fecha1 + "','DD-MM-YYYY')  AND TO_DATE('" + fecha2 + "','DD-MM-YYYY') AND productoVendido.CODIGODEBARRAS = '" + codigoDeBarras + "')) ";
+        sql += "GROUP BY NUMDOC, TIPODOC, NOMBRE, CORREO, MEDIOPAGO, PUNTOS ";
+        sql += "ORDER BY " + orden + " ASC";
+
+        Query q = persistenceManager.newQuery(SQL, sql);
+        return q.executeList();
+    }
 }

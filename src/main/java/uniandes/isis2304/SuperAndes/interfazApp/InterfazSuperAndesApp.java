@@ -582,6 +582,52 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 
 	}
 
+	/* ****************************************************************
+	 * 			Requerimientos de consulta 11 al 12
+	 *			Iteración 4 - it4
+	 *****************************************************************/
+
+	public void consultarConsumoV2()
+	{
+		try{
+			String codigoDeBarras = JOptionPane.showInputDialog (this, "Introducir codigo de barras del producto",
+					"conocer la información de los usuarios que NO realizaron al menos una compra", JOptionPane.QUESTION_MESSAGE);
+			String fecha1 = JOptionPane.showInputDialog (this, "Fecha inicial? - DD-MM-YYYY",
+					"conocer la información de los usuarios que NO realizaron al menos una compra", JOptionPane.QUESTION_MESSAGE);
+			String fecha2 = JOptionPane.showInputDialog (this, "Fecha final? - DD-MM-YYYY",
+					"conocer la información de los usuarios que NO realizaron al menos una compra", JOptionPane.QUESTION_MESSAGE);
+
+			String orden = JOptionPane.showInputDialog (this, "Ordenar por: \n 1. Cantidad \n 2. Nombre \n 3. Puntos",
+					"conocer la información de los usuarios que NO realizaron al menos una compra", JOptionPane.QUESTION_MESSAGE);
+
+			List<Object[]> respuesta = superAndes.consultarConsumoV2(codigoDeBarras, fecha1, fecha2, orden);
+			String resultado = "En consultarConsumoV2\n\n";
+			resultado += "Los clientes que no realizaron al menos una compra son: \n";
+			int i = 1;
+			resultado += "  numdoc" + "                 TipoDoc"+"            nombre" + "                                   correo" + "                          medioPago" + "                 puntos" + "                 cantidad" + "\n";
+			for (Object [] tupla : respuesta)
+			{
+				BigDecimal numdoc = (BigDecimal) tupla [0];
+				String tipoDoc = (String) tupla [1];
+				String nombre = (String) tupla [2];
+				String correo = (String) tupla [3];
+				String medioPago = (String) tupla [4];
+				BigDecimal puntos = (BigDecimal) tupla [5];
+				BigDecimal cantidad = (BigDecimal) tupla [6];
+
+				resultado += i++ + ". " + numdoc + "        -       " + tipoDoc + "        -       " + nombre + "        -       " + correo + "        -       " + medioPago + "        -       " + puntos + "        -       " + cantidad + "\n";
+			}
+			resultado += "\n Operación terminada";
+			panelDatos.actualizarInterfaz(resultado);
+
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
 
 	/* ****************************************************************
 	 * 			Requerimientos de consulta
@@ -1588,7 +1634,13 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 			e.printStackTrace();
 		} 
 	}
-    
+
+
+
+
+
+
+
 	/* ****************************************************************
 	 * 			Programa principal
 	 *****************************************************************/

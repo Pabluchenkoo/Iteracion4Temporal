@@ -462,4 +462,12 @@ public class SuperAndes
 		return resp;
 
     }
+
+    public List<Object[]> consultarConsumoV2(String codigoDeBarras, String fecha1, String fecha2, String orden) {
+
+		log.info ("Consultando consumo");
+		List<Object[]> resp = pp.consultarConsumoV2(codigoDeBarras, fecha1, fecha2, orden);
+		log.info ("Consultando consumo: Listo!");
+		return resp;
+    }
 }
