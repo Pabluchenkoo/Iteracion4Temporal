@@ -28,7 +28,6 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -628,6 +627,75 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 		}
 	}
 
+	public void consultarFuncionamiento(){
+
+		try{
+
+			String fecha1 = JOptionPane.showInputDialog (this, "Fecha inicial? - DD-MM-YYYY",
+					"Fecha inicio de la semana", JOptionPane.QUESTION_MESSAGE);
+			String fecha2 = JOptionPane.showInputDialog (this, "Fecha final? - DD-MM-YYYY",
+					"fecha fin de la semana", JOptionPane.QUESTION_MESSAGE);
+
+			List <Object[]> respuesta = superAndes.masVendido(fecha1, fecha2);
+			List < Object[]> respuesta2 = superAndes.menosVendido(fecha1, fecha2);
+			List < Object[]> respuesta3 = superAndes.proveedoresMasSolicitados(fecha1, fecha2);
+			List < Object[]> respuesta4 = superAndes.proveedoresMenosSolicitados(fecha1, fecha2);
+
+			String resultado = "En consultarFuncionamiento\n\n";
+			resultado += "Los productos mas vendidos son: \n\n";
+			int i = 1;
+			resultado += "  nombre" + "                                     cantidad" + "\n";
+			for (Object [] tupla : respuesta)
+			{
+				String nombre = (String) tupla [0];
+				BigDecimal cantidad = (BigDecimal) tupla [1];
+
+				resultado += i++ + ". " + nombre + "        -       " + cantidad + "\n";
+			}
+			resultado +="\n\n\n";
+			resultado += "Los productos menos vendidos son: \n\n";
+			i = 1;
+			resultado += "  nombre" + "                                     cantidad" + "\n";
+			for (Object [] tupla : respuesta2)
+			{
+				String nombre = (String) tupla [0];
+				BigDecimal cantidad = (BigDecimal) tupla [1];
+
+				resultado += i++ + ". " + nombre + "        -       " + cantidad + "\n";
+			}
+			resultado +="\n\n\n";
+			resultado += "Los proveedores mas solicitados son: \n\n";
+			i = 1;
+			resultado += "  nombre" + "                                ordenesRealizadas" + "\n";
+			for (Object [] tupla : respuesta3)
+			{
+				String nombre = (String) tupla [0];
+				BigDecimal ordenesRealizadas = (BigDecimal) tupla [1];
+
+				resultado += i++ + ". " + nombre + "        -       " + ordenesRealizadas + "\n";
+			}
+			resultado +="\n\n\n";
+			resultado += "Los proveedores menos solicitados son: \n\n";
+			i = 1;
+			resultado += "  nombre" + "                                ordenesRealizadas" + "\n";
+			for (Object [] tupla : respuesta4)
+			{
+				String nombre = (String) tupla [0];
+				BigDecimal ordenesRealizadas = (BigDecimal) tupla [1];
+
+				resultado += i++ + ". " + nombre + "        -       " + ordenesRealizadas + "\n";
+			}
+
+			resultado += "\n Operación terminada";
+			panelDatos.actualizarInterfaz(resultado);
+
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
 
 	/* ****************************************************************
 	 * 			Requerimientos de consulta
