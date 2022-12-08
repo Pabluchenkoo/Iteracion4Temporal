@@ -172,20 +172,192 @@ HAVING COUNT(*) > 2;
 
 
 --REQCONSULTA 11 IT4
-SELECT NUMDOC,TIPODOC,NOMBRE,
-       CORREO,MEDIOPAGO,PUNTOS, SUM(cantidades) FROM
-    (
-        (SELECT  S_CLIENTE.NUMDOC,S_CLIENTE.TIPODOC,S_CLIENTE.NOMBRE,
-                 S_CLIENTE.CORREO,S_CLIENTE.MEDIOPAGO,S_CLIENTE.PUNTOS, productoVendido.cantidad AS cantidades FROM S_CLIENTE
-                                                                                                                        JOIN S_FACTURA factura ON factura.numdoc = S_CLIENTE.numdoc
-                                                                                                                        JOIN S_PRODUCTOVENDIDO productoVendido ON productoVendido.idFactura = factura.id)
-            MINUS
-            (SELECT S_CLIENTE.NUMDOC,S_CLIENTE.TIPODOC,S_CLIENTE.NOMBRE,
-S_CLIENTE.CORREO,S_CLIENTE.MEDIOPAGO,S_CLIENTE.PUNTOS, productoVendido.cantidad FROM S_CLIENTE
-JOIN S_FACTURA factura ON factura.numdoc = S_CLIENTE.numdoc
-JOIN S_PRODUCTOVENDIDO productoVendido ON productoVendido.idFactura = factura.id
-WHERE factura.fecha BETWEEN '22/01/20' AND '30/09/30' AND productoVendido.CODIGODEBARRAS = '9790336344206')
-        )
-GROUP BY NUMDOC,TIPODOC,NOMBRE,
-         CORREO,MEDIOPAGO,PUNTOS
+
+SELECT NUMDOC,
+       TIPODOC,
+       NOMBRE,
+       CORREO,
+       MEDIOPAGO,
+       PUNTOS,
+       SUM(cantidades)
+FROM (
+         (SELECT S_CLIENTE.NUMDOC,
+                 S_CLIENTE.TIPODOC,
+                 S_CLIENTE.NOMBRE,
+                 S_CLIENTE.CORREO,
+                 S_CLIENTE.MEDIOPAGO,
+                 S_CLIENTE.PUNTOS,
+                 productoVendido.cantidad AS cantidades
+          FROM S_CLIENTE
+                   JOIN S_FACTURA factura ON factura.numdoc = S_CLIENTE.numdoc
+                   JOIN S_PRODUCTOVENDIDO productoVendido ON productoVendido.idFactura = factura.id)
+             MINUS
+             (SELECT S_CLIENTE.NUMDOC, S_CLIENTE.TIPODOC,S_CLIENTE.NOMBRE,
+                S_CLIENTE.CORREO,S_CLIENTE.MEDIOPAGO,S_CLIENTE.PUNTOS, productoVendido.cantidad FROM S_CLIENTE
+        JOIN S_FACTURA factura ON factura.numdoc = S_CLIENTE.numdoc
+        JOIN S_PRODUCTOVENDIDO productoVendido ON productoVendido.idFactura = factura.id
+        WHERE factura.fecha BETWEEN '22/01/20' AND '30/09/30' AND productoVendido.CODIGODEBARRAS = '9790336344206')
+         )
+GROUP BY NUMDOC, TIPODOC, NOMBRE,
+         CORREO, MEDIOPAGO, PUNTOS
 ORDER BY nombre ASC;
+
+------------------------------------------------------------------------------------------------------------
+--REQCONSULTA 12 IT4
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+
+--producto mas vendido por semana
+SELECT *
+FROM (SELECT producto.nombre, SUM(productoVendido.cantidad) AS cantidad
+      FROM S_PRODUCTOVENDIDO productoVendido
+               JOIN S_FACTURA factura ON factura.id = productoVendido.idFactura
+               JOIN S_PRODUCTO producto ON producto.codigodebarras = productoVendido.codigodebarras
+      WHERE factura.fecha BETWEEN '10-05-2022' AND '17-05-2022'
+      GROUP BY(producto.nombre)
+      ORDER BY cantidad DESC)
+WHERE cantidad = (SELECT MAX(cantidad)
+                  FROM (SELECT producto.nombre, SUM(productoVendido.cantidad) AS cantidad
+                        FROM S_PRODUCTOVENDIDO productoVendido
+                                 JOIN S_FACTURA factura ON factura.id = productoVendido.idFactura
+                                 JOIN S_PRODUCTO producto ON producto.codigodebarras = productoVendido.codigodebarras
+                        WHERE factura.fecha BETWEEN '10-05-2022' AND '17-05-2022'
+                        GROUP BY(producto.nombre)
+                        ORDER BY cantidad DESC));
+
+--producto menos vendido por semana
+SELECT *
+FROM (SELECT producto.nombre, SUM(productoVendido.cantidad) AS cantidad
+      FROM S_PRODUCTOVENDIDO productoVendido
+               JOIN S_FACTURA factura ON factura.id = productoVendido.idFactura
+               JOIN S_PRODUCTO producto ON producto.codigodebarras = productoVendido.codigodebarras
+      WHERE factura.fecha BETWEEN '10-05-2022' AND '17-05-2022'
+      GROUP BY(producto.nombre)
+      ORDER BY cantidad DESC)
+WHERE cantidad = (SELECT MIN(cantidad)
+                  FROM (SELECT producto.nombre, SUM(productoVendido.cantidad) AS cantidad
+                        FROM S_PRODUCTOVENDIDO productoVendido
+                                 JOIN S_FACTURA factura ON factura.id = productoVendido.idFactura
+                                 JOIN S_PRODUCTO producto ON producto.codigodebarras = productoVendido.codigodebarras
+                        WHERE factura.fecha BETWEEN '10-05-2022' AND '17-05-2022'
+                        GROUP BY(producto.nombre)
+                        ORDER BY cantidad DESC));
+
+--producto mas y menos vendido por sucursal
+--producto mas vendido por sucursal por semana
+SELECT *
+FROM (SELECT producto.nombre, SUM(productoVendido.cantidad) AS cantidad
+      FROM S_PRODUCTOVENDIDO productoVendido
+               JOIN S_FACTURA factura ON factura.id = productoVendido.idFactura
+               JOIN S_PRODUCTO producto ON producto.codigodebarras = productoVendido.codigodebarras
+               JOIN S_SUCURSAL sucursal ON sucursal.id = factura.idsucursal
+      WHERE factura.fecha BETWEEN '10-05-2022' AND '17-05-2022'
+        AND sucursal.id = 291000
+      GROUP BY(producto.nombre)
+      ORDER BY cantidad DESC)
+WHERE cantidad = (SELECT MAX(cantidad)
+                  FROM (SELECT producto.nombre, SUM(productoVendido.cantidad) AS cantidad
+                        FROM S_PRODUCTOVENDIDO productoVendido
+                                 JOIN S_FACTURA factura ON factura.id = productoVendido.idFactura
+                                 JOIN S_PRODUCTO producto ON producto.codigodebarras = productoVendido.codigodebarras
+                                 JOIN S_SUCURSAL sucursal ON sucursal.id = factura.idsucursal
+                        WHERE factura.fecha BETWEEN '10-05-2022' AND '17-05-2022'
+                          AND sucursal.id = 291000
+                        GROUP BY(producto.nombre)
+                        ORDER BY cantidad DESC));
+
+--producto menos vendido por sucursal por semana
+SELECT *
+FROM (SELECT producto.nombre, SUM(productoVendido.cantidad) AS cantidad
+      FROM S_PRODUCTOVENDIDO productoVendido
+               JOIN S_FACTURA factura ON factura.id = productoVendido.idFactura
+               JOIN S_PRODUCTO producto ON producto.codigodebarras = productoVendido.codigodebarras
+               JOIN S_SUCURSAL sucursal ON sucursal.id = factura.idsucursal
+      WHERE factura.fecha BETWEEN '10-05-2022' AND '17-05-2022'
+        AND sucursal.id = 291000
+      GROUP BY(producto.nombre)
+      ORDER BY cantidad DESC)
+WHERE cantidad = (SELECT MIN(cantidad)
+                  FROM (SELECT producto.nombre, SUM(productoVendido.cantidad) AS cantidad
+                        FROM S_PRODUCTOVENDIDO productoVendido
+                                 JOIN S_FACTURA factura ON factura.id = productoVendido.idFactura
+                                 JOIN S_PRODUCTO producto ON producto.codigodebarras = productoVendido.codigodebarras
+                                 JOIN S_SUCURSAL sucursal ON sucursal.id = factura.idsucursal
+                        WHERE factura.fecha BETWEEN '10-05-2022' AND '17-05-2022'
+                          AND sucursal.id = 291000
+                        GROUP BY(producto.nombre)
+                        ORDER BY cantidad DESC));
+
+--proveedores mas solicitados por semana
+SELECT *
+FROM (SELECT proveedor.nombre, SUM(cantidad) AS ordenesRealizadas
+      FROM S_ORDENPEDIDO ordenPedido
+               JOIN S_PROVEEDOR proveedor ON proveedor.id = ordenPedido.idproveedor
+      WHERE fecha BETWEEN '10-05-2022' AND '17-05-2022'
+      GROUP BY(proveedor.nombre)
+      ORDER BY ordenesRealizadas DESC)
+WHERE ordenesRealizadas = (SELECT MAX(ordenesRealizadas)
+                           FROM (SELECT proveedor.nombre, SUM(cantidad) AS ordenesRealizadas
+                                 FROM S_ORDENPEDIDO ordenPedido
+                                          JOIN S_PROVEEDOR proveedor ON proveedor.id = ordenPedido.idproveedor
+                                 WHERE fecha BETWEEN '10-05-2022' AND '17-05-2022'
+                                 GROUP BY(proveedor.nombre)
+                                 ORDER BY ordenesRealizadas DESC));
+
+--proveedores menos solicitados por semana
+SELECT *
+FROM (SELECT proveedor.nombre, SUM(cantidad) AS ordenesRealizadas
+      FROM S_ORDENPEDIDO ordenPedido
+               JOIN S_PROVEEDOR proveedor ON proveedor.id = ordenPedido.idproveedor
+      WHERE fecha BETWEEN '10-05-2022' AND '17-05-2022'
+      GROUP BY(proveedor.nombre)
+      ORDER BY ordenesRealizadas DESC)
+WHERE ordenesRealizadas = (SELECT MIN(ordenesRealizadas)
+                           FROM (SELECT proveedor.nombre, SUM(cantidad) AS ordenesRealizadas
+                                 FROM S_ORDENPEDIDO ordenPedido
+                                          JOIN S_PROVEEDOR proveedor ON proveedor.id = ordenPedido.idproveedor
+                                 WHERE fecha BETWEEN '10-05-2022' AND '17-05-2022'
+                                 GROUP BY(proveedor.nombre)
+                                 ORDER BY ordenesRealizadas DESC));
+
+
+-- proveedores mas solicitados por sucursal por semana
+
+SELECT *
+FROM (SELECT proveedor.nombre, SUM(cantidad) AS ordenesRealizadas
+      FROM S_ORDENPEDIDO ordenPedido
+               JOIN S_PROVEEDOR proveedor ON proveedor.id = ordenPedido.idproveedor
+               JOIN S_SUCURSAL sucursal ON sucursal.id = proveedor.idsucursal
+      WHERE fecha BETWEEN '10-05-2022' AND '17-05-2022'
+        AND proveedor.idsucursal = 281000
+      GROUP BY(proveedor.nombre)
+      ORDER BY ordenesRealizadas DESC)
+WHERE ordenesRealizadas = (SELECT MAX(ordenesRealizadas)
+                           FROM (SELECT proveedor.nombre, SUM(cantidad) AS ordenesRealizadas
+                                 FROM S_ORDENPEDIDO ordenPedido
+                                          JOIN S_PROVEEDOR proveedor ON proveedor.id = ordenPedido.idproveedor
+                                          JOIN S_SUCURSAL sucursal ON sucursal.id = proveedor.idsucursal
+                                 WHERE fecha BETWEEN '10-05-2022' AND '17-05-2022'
+                                   AND proveedor.idsucursal = 281000
+                                 GROUP BY(proveedor.nombre)
+                                 ORDER BY ordenesRealizadas DESC));
+
+-- proveedores menos solicitados por sucursal por semana
+SELECT *
+FROM (SELECT proveedor.nombre, SUM(cantidad) AS ordenesRealizadas
+      FROM S_ORDENPEDIDO ordenPedido
+               JOIN S_PROVEEDOR proveedor ON proveedor.id = ordenPedido.idproveedor
+               JOIN S_SUCURSAL sucursal ON sucursal.id = proveedor.idsucursal
+      WHERE fecha BETWEEN '10-05-2022' AND '17-05-2022'
+        AND proveedor.idsucursal = 281000
+      GROUP BY(proveedor.nombre)
+      ORDER BY ordenesRealizadas DESC)
+WHERE ordenesRealizadas = (SELECT MIN(ordenesRealizadas)
+                           FROM (SELECT proveedor.nombre, SUM(cantidad) AS ordenesRealizadas
+                                 FROM S_ORDENPEDIDO ordenPedido
+                                          JOIN S_PROVEEDOR proveedor ON proveedor.id = ordenPedido.idproveedor
+                                          JOIN S_SUCURSAL sucursal ON sucursal.id = proveedor.idsucursal
+                                 WHERE fecha BETWEEN '10-05-2022' AND '17-05-2022'
+                                   AND proveedor.idsucursal = 281000
+                                 GROUP BY(proveedor.nombre)
+                                 ORDER BY ordenesRealizadas DESC));
