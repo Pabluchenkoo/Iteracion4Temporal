@@ -1065,3 +1065,21 @@ ORA-00904: "NOMBRE": identificador no válido
 17:29:25,081 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
 17:29:50,540 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Encontrando buenos clientes 
 17:33:09,200 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Encontrando buenos clientes
+20:56:19,430 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+20:56:19,430 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se aplica configuración indicada en el archivo de configuración
+20:56:19,482 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+20:56:56,027 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+20:56:56,028 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se aplica configuración indicada en el archivo de configuración
+20:56:56,079 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+20:57:21,812 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Encontrando buenos clientes 
+20:57:22,147 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Encontrando buenos clientes
+20:57:22,147 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Encontrando buenos clientes 
+20:57:25,667 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Encontrando buenos clientes
+20:57:52,996 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Consultando consumo: 9790914077717
+20:57:53,369 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Consumo consultado: [[Ljava.lang.Object;@4d1cf4ef, [Ljava.lang.Object;@495598e8, [Ljava.lang.Object;@326b0603, [Ljava.lang.Object;@6d70062b, [Ljava.lang.Object;@47612ce6, [Ljava.lang.Object;@22166e3a, [Ljava.lang.Object;@48273f65, [Ljava.lang.Object;@250b3914, [Ljava.lang.Object;@6b43374f, [Ljava.lang.Object;@7a35f3a3]
+22:25:49,133 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+22:25:49,134 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se aplica configuración indicada en el archivo de configuración
+22:25:49,268 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+22:26:32,446 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+22:26:32,447 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se aplica configuración indicada en el archivo de configuración
+22:26:32,491 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Tablas BD

@@ -190,32 +190,52 @@ public class SuperAndes
 		}
 	}
 
-	public List<Object[]> consultarConsumoO( long cod,String fecha1,String fecha2, String arg,String orden){
-		log.info ("Consultando consumo: " + cod);
-		List<Object[]> consumo = pp.consultarConsumoO(cod, fecha1, fecha2, arg, orden);
-		log.info ("Consumo consultado: " + consumo);
-		return consumo;
+	public List<Object[]> consultarConsumoO( long cod,String fecha1,String fecha2, String arg,String orden) throws Exception {
+		if(rol==93 || rol==91) {
+			log.info("Consultando consumo: " + cod);
+			List<Object[]> consumo = pp.consultarConsumoO(cod, fecha1, fecha2, arg, orden);
+			log.info("Consumo consultado: " + consumo);
+			return consumo;
+		}
+		else {
+			throw new Exception("Esta operacion solo puede ser realizada por un gerente");
+		}
 	}
 
-	public List<Object[]> consultarConsumoA( long cod,String fecha1,String fecha2, String arg,String orden){
-		log.info ("Consultando consumo: " + cod);
+	public List<Object[]> consultarConsumoA( long cod,String fecha1,String fecha2, String arg,String orden) throws Exception {
+		if(rol==93 || rol==91) {
+
+			log.info ("Consultando consumo: " + cod);
 		List<Object[]> consumo = pp.consultarConsumoA(cod, fecha1, fecha2, arg, orden);
 		log.info ("Consumo consultado: " + consumo);
-		return consumo;
+		return consumo;}
+		else {
+			throw new Exception("Esta operacion solo puede ser realizada por un gerente");
+		}
 	}
 
-	public List<Object[]> buenosClientes( ){
-		log.info ("Encontrando buenos clientes " );
-		List<Object[]> clientes = pp.buenosClientes();
-		log.info ("Encontrando buenos clientes");
-		return clientes;
+	public List<Object[]> buenosClientes( ) throws Exception {
+		if(rol==93 || rol==91) {
+			log.info ("Encontrando buenos clientes " );
+			List<Object[]> clientes = pp.buenosClientes();
+			log.info ("Encontrando buenos clientes");
+			return clientes;}
+			else {
+			throw new Exception("Esta operacion solo puede ser realizada por un gerente");
+		}
 	}
 
-	public List<Object[]> buenosClientes2( ){
-		log.info ("Encontrando buenos clientes " );
+	public List<Object[]> buenosClientes2( ) throws Exception {
+		if(rol==93 || rol==91) {
+
+			log.info ("Encontrando buenos clientes " );
 		List<Object[]> clientes = pp.buenosClientes2();
 		log.info ("Encontrando buenos clientes");
-		return clientes;
+		return clientes;}
+		else {
+			throw new Exception("Esta operacion solo puede ser realizada por un gerente");
+		}
+
 	}
 	public OfertaDescuento adicionarOfertaDescuento(String codBarras, int unidades, String fecha, double porcentaje){
 		log.info ("Adicionando oferta descuento: " + codBarras);
