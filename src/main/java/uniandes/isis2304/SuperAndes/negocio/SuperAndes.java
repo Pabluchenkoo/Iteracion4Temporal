@@ -473,35 +473,50 @@ public class SuperAndes
 	}
 
 
-	public List<Object[]> masVendido(String fecha1, String fecha2) {
+	public List<Object[]> masVendido(String fecha1, String fecha2) throws Exception {
 
-		log.info ("Consultando funcionamiento");
-		List<Object[]> resp = pp.consultarFuncionamiento(fecha1, fecha2);
-		log.info ("Consultando funcionamiento: Listo!");
-		return resp;
+		if(nombreCliente.equals(""))
+		{
+			log.info ("Consultando funcionamiento");
+			List<Object[]> resp = pp.consultarFuncionamiento(fecha1, fecha2);
+			log.info ("Consultando funcionamiento: Listo!");
+			return resp;
+		}
+		throw new Exception("No tiene permisos para realizar esta operación");
 	}
 
-	public List<Object[]> menosVendido(String fecha1, String fecha2) {
+	public List<Object[]> menosVendido(String fecha1, String fecha2) throws Exception {
 
-		log.info ("Consultando funcionamiento");
-		List<Object[]> resp = pp.consultarFuncionamiento2(fecha1, fecha2);
-		log.info ("Consultando funcionamiento: Listo!");
-		return resp;
+		if (nombreCliente.equals(""))
+		{
+			log.info ("Consultando funcionamiento");
+			List<Object[]> resp = pp.consultarFuncionamiento2(fecha1, fecha2);
+			log.info ("Consultando funcionamiento: Listo!");
+			return resp;
+		}
+		throw new Exception("No tiene permisos para realizar esta operación");
 	}
 
-	public List<Object[]> proveedoresMasSolicitados(String fecha1, String fecha2) {
-
-		log.info ("Consultando proveedores mas solicitados");
-		List<Object[]> resp = pp.consultarProveedoresMasSolicitados(fecha1, fecha2);
-		log.info ("Consultando proveedores mas solicitados: Listo!");
-		return resp;
+	public List<Object[]> proveedoresMasSolicitados(String fecha1, String fecha2) throws Exception {
+		if (nombreCliente.equals(""))
+		{
+			log.info ("Consultando proveedores mas solicitados");
+			List<Object[]> resp = pp.consultarProveedoresMasSolicitados(fecha1, fecha2);
+			log.info ("Consultando proveedores mas solicitados: Listo!");
+			return resp;
+		}
+		throw new Exception("No tiene permisos para realizar esta operación");
 	}
 
-	public List<Object[]> proveedoresMenosSolicitados(String fecha1, String fecha2) {
+	public List<Object[]> proveedoresMenosSolicitados(String fecha1, String fecha2) throws Exception {
 
-		log.info ("Consultando proveedores menos solicitados");
-		List<Object[]> resp = pp.consultarProveedoresMenosSolicitados(fecha1, fecha2);
-		log.info ("Consultando proveedores menos solicitados: Listo!");
-		return resp;
+		if(nombreCliente.equals(""))
+		{
+			log.info ("Consultando proveedores menos solicitados");
+			List<Object[]> resp = pp.consultarProveedoresMenosSolicitados(fecha1, fecha2);
+			log.info ("Consultando proveedores menos solicitados: Listo!");
+			return resp;
+		}
+		throw new Exception("No tiene permisos para realizar esta operación");
 	}
 }
