@@ -475,6 +475,42 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 
 	}
 
+	public void consultarConsumoA() {
+		try {
+
+			String codigo = JOptionPane.showInputDialog(this, "Codigo del producto?", "Consultar consumo de un producto", JOptionPane.QUESTION_MESSAGE);
+			String fecha1 = JOptionPane.showInputDialog(this, "Fecha inicial? - YYYY-MM-DD",
+					"Consultar consumo de un producto", JOptionPane.QUESTION_MESSAGE);
+
+			String fecha2 = JOptionPane.showInputDialog(this, "Fecha final? - YYYY-MM-DD",
+					"Consultar consumo de un producto", JOptionPane.QUESTION_MESSAGE);
+			String arg = (String) JOptionPane.showInputDialog(this, "Seleccione el parametro de ordenamiento", "Input", JOptionPane.QUESTION_MESSAGE,
+					null, new Object[]{"Nombre", "Correo", "Documento", "Cantidad"}, "Nombre");
+			String orden = (String) JOptionPane.showInputDialog(this, "En que orden?", "Input", JOptionPane.QUESTION_MESSAGE,
+					null, new Object[]{"Ascendente", "Descendente"}, "Descendente");
+			if (codigo != null && fecha1 != null && fecha2 != null) {
+				long cod = Long.parseLong(codigo);
+				List<Object[]> consumo = superAndes.consultarConsumoA(cod, fecha1, fecha2, arg, orden);
+				String rest = "Documento" + "		" + "Nombre" + "		" + "Correo" + "		" + "Cantidad" +"\n\n";
+				for (Object[] cliente : consumo) {
+					String nombre = (String) cliente[1];
+					String correo = (String) cliente[2];
+					BigDecimal documentoB = (BigDecimal) cliente[0];
+					int documento = documentoB.intValue();
+					BigDecimal cantidadB = (BigDecimal) cliente[3];
+					int cantidad = cantidadB.intValue();
+					rest += documento + "		" + nombre + "		" + correo + "		" + cantidad+"\n";
+				}
+				panelDatos.actualizarInterfaz(rest);
+			} else {
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
 	public void adicionarProductoCarrito()
 	{
 		try{
@@ -500,7 +536,40 @@ public class InterfazSuperAndesApp extends JFrame implements ActionListener
 		}
 	}
 
+	public void buenosClientes()
+	{
+		try
+		{
+			List<Object[]> clientes = superAndes.buenosClientes();
+			String rest = "Clientes que compraron productos mas caros a $100000" + "\n\n";
+			 rest += "Documento" + "		" + "Nombre" + "		" + "Correo" + "		" + "\n\n";
+			for (Object[] cliente : clientes) {
+				String nombre = (String) cliente[1];
+				String correo = (String) cliente[2];
+				BigDecimal documentoB = (BigDecimal) cliente[0];
+				int documento = documentoB.intValue();
+				rest += documento + "		" + nombre + "		" + correo + "		" + "\n";
 
+			}
+			rest += "Clientes que compraron productos electronicos o herramientas" + "\n\n";
+			List<Object[]> clientes2 = superAndes.buenosClientes2();
+			rest += "Documento" + "		" + "Nombre" + "		" + "Correo" + "		" + "\n\n";
+			for (Object[] cliente : clientes2) {
+				String nombre = (String) cliente[1];
+				String correo = (String) cliente[2];
+				BigDecimal documentoB = (BigDecimal) cliente[0];
+				int documento = documentoB.intValue();
+				rest += documento + "		" + nombre + "		" + correo + "		" + "\n";}
+			panelDatos.actualizarInterfaz(rest);
+		}
+
+		catch(Exception e)
+		{
+		e.printStackTrace();
+		String resultado = generarMensajeError(e);
+		panelDatos.actualizarInterfaz(resultado);
+	}
+	}
 	public void devolverProductoCarrito()
 	{
 		String[] choices = superAndes.productosEnCarrito();

@@ -1027,3 +1027,59 @@ ORA-00904: "NOMBRE": identificador no válido
 04:36:56,887 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se aplica configuración indicada en el archivo de configuración
 04:36:56,945 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
 04:37:33,762 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Consultando consumo: 9790336344206
+04:39:41,162 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+04:39:41,164 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se aplica configuración indicada en el archivo de configuración
+04:39:41,227 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+04:40:17,139 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Consultando consumo: 9790336344206
+04:40:45,728 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Consumo consultado: [[Ljava.lang.Object;@49b53240, [Ljava.lang.Object;@1b97fe8b]
+14:54:04,077 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+14:54:04,079 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se aplica configuración indicada en el archivo de configuración
+14:54:04,158 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+14:55:19,304 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Consultando consumo: 9790914077717
+14:55:50,388 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Consumo consultado: [[Ljava.lang.Object;@4d3d2cb8, [Ljava.lang.Object;@3a0f135b, [Ljava.lang.Object;@7cd79bc, [Ljava.lang.Object;@741d181e, [Ljava.lang.Object;@5061a2c9, [Ljava.lang.Object;@1236f655, [Ljava.lang.Object;@7eda7d36, [Ljava.lang.Object;@629b471b, [Ljava.lang.Object;@3fb1c66b, [Ljava.lang.Object;@1a100b96]
+14:57:51,216 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Consultando consumo: 9790914077717
+14:57:51,552 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Consumo consultado: [[Ljava.lang.Object;@3a9f135f, [Ljava.lang.Object;@77a7a163, [Ljava.lang.Object;@4e05c947, [Ljava.lang.Object;@57207279, [Ljava.lang.Object;@15e79629, [Ljava.lang.Object;@5f81914f, [Ljava.lang.Object;@3f2e2409, [Ljava.lang.Object;@6bc93a2f, [Ljava.lang.Object;@4236afa1, [Ljava.lang.Object;@116e4541]
+14:59:11,679 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+14:59:11,680 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se aplica configuración indicada en el archivo de configuración
+14:59:11,762 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+15:00:06,736 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+15:00:06,737 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se aplica configuración indicada en el archivo de configuración
+15:00:06,797 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+15:00:44,065 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Consultando consumo: 9790914077717
+15:00:44,517 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Consumo consultado: [[Ljava.lang.Object;@6016ece8, [Ljava.lang.Object;@18d51698, [Ljava.lang.Object;@539b4ab0, [Ljava.lang.Object;@34b979f, [Ljava.lang.Object;@546d4ab2, [Ljava.lang.Object;@64bcf771, [Ljava.lang.Object;@6dfbef9c, [Ljava.lang.Object;@32537ad3, [Ljava.lang.Object;@c559ef1, [Ljava.lang.Object;@f51e775]
+15:01:43,973 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Consultando consumo: 9790914077717
+15:01:44,265 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Consumo consultado: [[Ljava.lang.Object;@69b8d875, [Ljava.lang.Object;@6ca2439c, [Ljava.lang.Object;@7fc5dc51, [Ljava.lang.Object;@3d867e51, [Ljava.lang.Object;@12d262e4, [Ljava.lang.Object;@6c126d81, [Ljava.lang.Object;@3d640306, [Ljava.lang.Object;@339e960d, [Ljava.lang.Object;@325a17d8, [Ljava.lang.Object;@4d5b0a77]
+15:02:21,771 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Consultando consumo: 9790914077717
+15:02:22,063 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Consumo consultado: [[Ljava.lang.Object;@44bc8ab0, [Ljava.lang.Object;@1a035cdf, [Ljava.lang.Object;@51f7879, [Ljava.lang.Object;@1898e7e5, [Ljava.lang.Object;@38d1074c, [Ljava.lang.Object;@38b4512d, [Ljava.lang.Object;@46963af2, [Ljava.lang.Object;@19ee4a0a, [Ljava.lang.Object;@2935c51c, [Ljava.lang.Object;@3392c42e]
+17:27:03,061 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+17:27:03,062 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se aplica configuración indicada en el archivo de configuración
+17:27:03,127 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+17:27:45,023 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+17:27:45,024 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se aplica configuración indicada en el archivo de configuración
+17:27:45,100 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+17:28:43,736 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+17:28:43,737 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se aplica configuración indicada en el archivo de configuración
+17:28:43,801 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+17:29:25,024 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+17:29:25,024 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se aplica configuración indicada en el archivo de configuración
+17:29:25,081 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+17:29:50,540 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Encontrando buenos clientes 
+17:33:09,200 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Encontrando buenos clientes
+20:56:19,430 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+20:56:19,430 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se aplica configuración indicada en el archivo de configuración
+20:56:19,482 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+20:56:56,027 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+20:56:56,028 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se aplica configuración indicada en el archivo de configuración
+20:56:56,079 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+20:57:21,812 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Encontrando buenos clientes 
+20:57:22,147 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Encontrando buenos clientes
+20:57:22,147 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Encontrando buenos clientes 
+20:57:25,667 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Encontrando buenos clientes
+20:57:52,996 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Consultando consumo: 9790914077717
+20:57:53,369 (AWT-EventQueue-0) INFO  [uniandes.isis2304.SuperAndes.negocio.SuperAndes] - Consumo consultado: [[Ljava.lang.Object;@4d1cf4ef, [Ljava.lang.Object;@495598e8, [Ljava.lang.Object;@326b0603, [Ljava.lang.Object;@6d70062b, [Ljava.lang.Object;@47612ce6, [Ljava.lang.Object;@22166e3a, [Ljava.lang.Object;@48273f65, [Ljava.lang.Object;@250b3914, [Ljava.lang.Object;@6b43374f, [Ljava.lang.Object;@7a35f3a3]
+22:25:49,133 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+22:25:49,134 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se aplica configuración indicada en el archivo de configuración
+22:25:49,268 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+22:26:32,446 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+22:26:32,447 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se aplica configuración indicada en el archivo de configuración
+22:26:32,491 (main) INFO  [uniandes.isis2304.SuperAndes.interfazApp.InterfazSuperAndesApp] - Se encontró un archivo de configuración válido: Tablas BD

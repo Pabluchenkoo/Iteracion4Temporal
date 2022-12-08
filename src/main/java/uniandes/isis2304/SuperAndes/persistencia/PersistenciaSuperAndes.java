@@ -530,6 +530,18 @@ public class PersistenciaSuperAndes
 		return sqlProductoVendido.consultarConsumoO(pmf.getPersistenceManager(), cod, fecha1, fecha2, arg, orden);
 	}
 
+
+	public List<Object[]> consultarConsumoA( long cod,String fecha1,String fecha2, String arg,String orden){
+		return sqlProductoVendido.consultarConsumoA(pmf.getPersistenceManager(), cod, fecha1, fecha2, arg, orden);
+	}
+
+	public List<Object[]> buenosClientes( ){
+		return sqlProductoVendido.buenosClientes(pmf.getPersistenceManager());
+	}
+	public List<Object[]> buenosClientes2( ){
+		return sqlProductoVendido.buenosClientes2(pmf.getPersistenceManager());
+	}
+
 	/* ****************************************************************
 	 * 			Requerimientos de consulta 11 al 12
 	 *			Iteración 4 - it4
@@ -555,6 +567,7 @@ public class PersistenciaSuperAndes
 	public List<Object[]> consultarProveedoresMasSolicitados(String fecha1, String fecha2) {
 		return sqlOrdenPedido.consultarProveedoresMasSolicitados(pmf.getPersistenceManager(), fecha1, fecha2);
 	}
+
 
 	public OfertaNxM adicionarOfertaNxM( String codBarras, int unidades, String fecha, int n, int m)
 	{
