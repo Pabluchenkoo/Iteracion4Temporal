@@ -217,7 +217,16 @@
 				{
 					"label": "RFC10-Consultar Consumo en SuperAndes Ordenamiento",
 					"event": "consultarConsumoO"
+				},
+				{
+					"label": "RFC11-Consultar Consumo en SuperAndesV2",
+					"event": "consultarConsumoV2"
+				},
+				{
+					"label": "RFC12-Consultar funcionamiento",
+					"event": "consultarFuncionamiento"
 				}
+
 			]
 		},
 		{ "menuTitle": "Documentación",

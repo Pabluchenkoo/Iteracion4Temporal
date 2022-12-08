@@ -67,4 +67,44 @@ public class SQLOrdenPedido {
             q.setParameters(idOrdenConsolidada, idSucursal);
             q.executeUnique();
     }
+
+    public List<Object[]> consultarProveedoresMasSolicitados(PersistenceManager persistenceManager, String fecha1, String fecha2) {
+        String sql = "SELECT *\n" +
+                "FROM (SELECT proveedor.nombre, SUM(cantidad) AS ordenesRealizadas\n" +
+                "      FROM S_ORDENPEDIDO ordenPedido\n" +
+                "               JOIN S_PROVEEDOR proveedor ON proveedor.id = ordenPedido.idproveedor\n" +
+                "      WHERE fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"'\n" +
+                "      GROUP BY(proveedor.nombre)\n" +
+                "      ORDER BY ordenesRealizadas DESC)\n" +
+                "WHERE ordenesRealizadas = (SELECT MAX(ordenesRealizadas)\n" +
+                "                           FROM (SELECT proveedor.nombre, SUM(cantidad) AS ordenesRealizadas\n" +
+                "                                 FROM S_ORDENPEDIDO ordenPedido\n" +
+                "                                          JOIN S_PROVEEDOR proveedor ON proveedor.id = ordenPedido.idproveedor\n" +
+                "                                 WHERE fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"'\n" +
+                "                                 GROUP BY(proveedor.nombre)\n" +
+                "                                 ORDER BY ordenesRealizadas DESC))";
+        Query q = persistenceManager.newQuery(SQL, sql);
+        return q.executeList();
+
+    }
+
+    public List<Object[]> consultarProveedoresMenosSolicitados(PersistenceManager persistenceManager, String fecha1, String fecha2) {
+
+        String sql= "SELECT *\n" +
+                "FROM (SELECT proveedor.nombre, SUM(cantidad) AS ordenesRealizadas\n" +
+                "      FROM S_ORDENPEDIDO ordenPedido\n" +
+                "               JOIN S_PROVEEDOR proveedor ON proveedor.id = ordenPedido.idproveedor\n" +
+                "      WHERE fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"'\n" +
+                "      GROUP BY(proveedor.nombre)\n" +
+                "      ORDER BY ordenesRealizadas DESC)\n" +
+                "WHERE ordenesRealizadas = (SELECT MIN(ordenesRealizadas)\n" +
+                "                           FROM (SELECT proveedor.nombre, SUM(cantidad) AS ordenesRealizadas\n" +
+                "                                 FROM S_ORDENPEDIDO ordenPedido\n" +
+                "                                          JOIN S_PROVEEDOR proveedor ON proveedor.id = ordenPedido.idproveedor\n" +
+                "                                 WHERE fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"'\n" +
+                "                                 GROUP BY(proveedor.nombre)\n" +
+                "                                 ORDER BY ordenesRealizadas DESC))";
+        Query q = persistenceManager.newQuery(SQL, sql);
+        return q.executeList();
+    }
 }

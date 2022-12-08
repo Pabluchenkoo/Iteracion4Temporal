@@ -179,7 +179,7 @@ SELECT NUMDOC,
        CORREO,
        MEDIOPAGO,
        PUNTOS,
-       SUM(cantidades)
+       SUM(cantidades) AS cantidad
 FROM (
          (SELECT S_CLIENTE.NUMDOC,
                  S_CLIENTE.TIPODOC,
