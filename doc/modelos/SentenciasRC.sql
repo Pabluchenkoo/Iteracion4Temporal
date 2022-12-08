@@ -168,7 +168,29 @@ GROUP BY factura.numdoc , cliente.nombre
 HAVING COUNT(*) > 2;
 
 
+------------------------------------------------------------------------------------------------------------
+--REQCONSULTA 10 IT4
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+--CONSULTAR CONSUMO EN SUPERANDES ORDENAMIENTO
+select NUMDOC, NOMBRE, CORREO from
+    (select DISTINCT NUMDOC AS CLIENTE from S_FACTURA
+                                                inner join S_PRODUCTOVENDIDO  ON
+            S_FACTURA.ID = S_PRODUCTOVENDIDO.IDFACTURA
+     WHERE CODIGODEBARRAS = 9790914077717 AND   FECHA BETWEEN '2002-07-02' AND '2030-06-16')
+        INNER JOIN S_CLIENTE ON S_CLIENTE.NUMDOC = CLIENTE
+ORDER BY NUMDOC ASC;
 
+--CONSULTAR CONSUMO EN SUPERANDES AGRUPAMIENTO
+
+select NUMDOC, NOMBRE, CORREO, CANTIDAD from
+    (select  NUMDOC AS CLIENTE, SUM(CANTIDAD) AS CANTIDAD from S_FACTURA
+                                                                   inner join S_PRODUCTOVENDIDO  ON
+            S_FACTURA.ID = S_PRODUCTOVENDIDO.IDFACTURA
+     WHERE CODIGODEBARRAS = 9790914077717 AND   FECHA BETWEEN '2002-07-02' AND '2030-06-16'
+     GROUP BY NUMDOC)
+        INNER JOIN S_CLIENTE ON S_CLIENTE.NUMDOC = CLIENTE
+ORDER BY CANTIDAD ASC;
 
 
 --REQCONSULTA 11 IT4
@@ -361,3 +383,22 @@ WHERE ordenesRealizadas = (SELECT MIN(ordenesRealizadas)
                                    AND proveedor.idsucursal = 281000
                                  GROUP BY(proveedor.nombre)
                                  ORDER BY ordenesRealizadas DESC));
+
+------------------------------------------------------------------------------------------------------------
+--REQCONSULTA 13 IT4
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+
+select distinct s_cliente.NUMDOC, s_cliente.NOMBRE, s_cliente.CORREO from s_productovendido
+                                                                              inner join (select codigodebarras as cb from
+    s_producto inner join s_presentacion on s_presentacion.id=s_producto.idpresentacion where precioporunidad>=100000)
+                                                                                         on cb = s_productovendido.codigodebarras inner join s_factura on s_factura.id = idfactura
+                                                                              inner join s_cliente on s_cliente.numdoc = s_factura.numdoc;
+
+
+select distinct s_cliente.NUMDOC, s_cliente.NOMBRE, s_cliente.CORREO from s_productovendido
+                                                                              inner join (select codigodebarras as cb from
+    s_producto inner join s_categoria on s_categoria.id=s_producto.idcategoria where s_categoria.nombre='Tools' or s_categoria.nombre='Electronics')
+                                                                                         on cb = s_productovendido.codigodebarras inner join s_factura on s_factura.id = idfactura
+                                                                              inner join s_cliente on s_cliente.numdoc = s_factura.numdoc;
+
