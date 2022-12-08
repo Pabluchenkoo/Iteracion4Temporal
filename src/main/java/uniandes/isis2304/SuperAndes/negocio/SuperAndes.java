@@ -16,10 +16,7 @@
 package uniandes.isis2304.SuperAndes.negocio;
 
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -502,4 +499,64 @@ public class SuperAndes
 		return resp;
 
     }
+
+    public List<Object[]> consultarConsumoV2(String codigoDeBarras, String fecha1, String fecha2, String orden) throws Exception {
+
+		if(nombreCliente.equals(""))
+		{
+			log.info ("Consultando consumo");
+			List<Object[]> resp = pp.consultarConsumoV2(codigoDeBarras, fecha1, fecha2, orden);
+			log.info ("Consultando consumo: Listo!");
+			return resp;
+		}
+		throw new Exception("No tiene permisos para realizar esta operación");
+	}
+
+
+	public List<Object[]> masVendido(String fecha1, String fecha2) throws Exception {
+
+		if(nombreCliente.equals(""))
+		{
+			log.info ("Consultando funcionamiento");
+			List<Object[]> resp = pp.consultarFuncionamiento(fecha1, fecha2);
+			log.info ("Consultando funcionamiento: Listo!");
+			return resp;
+		}
+		throw new Exception("No tiene permisos para realizar esta operación");
+	}
+
+	public List<Object[]> menosVendido(String fecha1, String fecha2) throws Exception {
+
+		if (nombreCliente.equals(""))
+		{
+			log.info ("Consultando funcionamiento");
+			List<Object[]> resp = pp.consultarFuncionamiento2(fecha1, fecha2);
+			log.info ("Consultando funcionamiento: Listo!");
+			return resp;
+		}
+		throw new Exception("No tiene permisos para realizar esta operación");
+	}
+
+	public List<Object[]> proveedoresMasSolicitados(String fecha1, String fecha2) throws Exception {
+		if (nombreCliente.equals(""))
+		{
+			log.info ("Consultando proveedores mas solicitados");
+			List<Object[]> resp = pp.consultarProveedoresMasSolicitados(fecha1, fecha2);
+			log.info ("Consultando proveedores mas solicitados: Listo!");
+			return resp;
+		}
+		throw new Exception("No tiene permisos para realizar esta operación");
+	}
+
+	public List<Object[]> proveedoresMenosSolicitados(String fecha1, String fecha2) throws Exception {
+
+		if(nombreCliente.equals(""))
+		{
+			log.info ("Consultando proveedores menos solicitados");
+			List<Object[]> resp = pp.consultarProveedoresMenosSolicitados(fecha1, fecha2);
+			log.info ("Consultando proveedores menos solicitados: Listo!");
+			return resp;
+		}
+		throw new Exception("No tiene permisos para realizar esta operación");
+	}
 }

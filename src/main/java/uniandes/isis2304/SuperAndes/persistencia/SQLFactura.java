@@ -2,6 +2,7 @@ package uniandes.isis2304.SuperAndes.persistencia;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
+import java.util.List;
 
 public class SQLFactura {
 
@@ -43,5 +44,49 @@ public class SQLFactura {
     	Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaFactura() + " SET precio = ? WHERE id = ?");
         q.setParameters(precio, idFactura);
         q.executeUnique();
+    }
+
+    public List<Object[]> masVendido(PersistenceManager persistenceManager, String fecha1, String fecha2) {
+
+        String sql = "SELECT *\n" +
+                "FROM (SELECT producto.nombre, SUM(productoVendido.cantidad) AS cantidad\n" +
+                "      FROM S_PRODUCTOVENDIDO productoVendido\n" +
+                "               JOIN S_FACTURA factura ON factura.id = productoVendido.idFactura\n" +
+                "               JOIN S_PRODUCTO producto ON producto.codigodebarras = productoVendido.codigodebarras\n" +
+                "      WHERE factura.fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"'\n" +
+                "      GROUP BY(producto.nombre)\n" +
+                "      ORDER BY cantidad DESC)\n" +
+                "WHERE cantidad = (SELECT MAX(cantidad)\n" +
+                "                  FROM (SELECT producto.nombre, SUM(productoVendido.cantidad) AS cantidad\n" +
+                "                        FROM S_PRODUCTOVENDIDO productoVendido\n" +
+                "                                 JOIN S_FACTURA factura ON factura.id = productoVendido.idFactura\n" +
+                "                                 JOIN S_PRODUCTO producto ON producto.codigodebarras = productoVendido.codigodebarras\n" +
+                "                        WHERE factura.fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"'\n" +
+                "                        GROUP BY(producto.nombre)\n" +
+                "                        ORDER BY cantidad DESC))";
+        Query q = persistenceManager.newQuery(SQL, sql);
+        return q.executeList();
+    }
+
+    public List<Object[]> menosVendido(PersistenceManager persistenceManager, String fecha1, String fecha2) {
+
+        String sql = "SELECT *\n" +
+                "FROM (SELECT producto.nombre, SUM(productoVendido.cantidad) AS cantidad\n" +
+                "      FROM S_PRODUCTOVENDIDO productoVendido\n" +
+                "               JOIN S_FACTURA factura ON factura.id = productoVendido.idFactura\n" +
+                "               JOIN S_PRODUCTO producto ON producto.codigodebarras = productoVendido.codigodebarras\n" +
+                "      WHERE factura.fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"'\n" +
+                "      GROUP BY(producto.nombre)\n" +
+                "      ORDER BY cantidad DESC)\n" +
+                "WHERE cantidad = (SELECT MIN(cantidad)\n" +
+                "                  FROM (SELECT producto.nombre, SUM(productoVendido.cantidad) AS cantidad\n" +
+                "                        FROM S_PRODUCTOVENDIDO productoVendido\n" +
+                "                                 JOIN S_FACTURA factura ON factura.id = productoVendido.idFactura\n" +
+                "                                 JOIN S_PRODUCTO producto ON producto.codigodebarras = productoVendido.codigodebarras\n" +
+                "                        WHERE factura.fecha BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"'\n" +
+                "                        GROUP BY(producto.nombre)\n" +
+                "                        ORDER BY cantidad DESC))";
+        Query q = persistenceManager.newQuery(SQL, sql);
+        return q.executeList();
     }
 }

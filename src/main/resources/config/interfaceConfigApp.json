@@ -219,13 +219,22 @@
 					"event": "consultarConsumoO"
 				},
 				{
+
 					"label": "RFC10-Consultar Consumo en SuperAndes Agrupamiento",
 					"event": "consultarConsumoA"
 				},
 				{
 					"label": "RFC13-Encontrar buenos clientes",
 					"event": "buenosClientes"
+
+					"label": "RFC11-Consultar Consumo en SuperAndesV2",
+					"event": "consultarConsumoV2"
+				},
+				{
+					"label": "RFC12-Consultar funcionamiento",
+					"event": "consultarFuncionamiento"
 				}
+
 			]
 		},
 		{ "menuTitle": "Documentación",

@@ -17,7 +17,6 @@ package uniandes.isis2304.SuperAndes.persistencia;
 
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -524,9 +523,13 @@ public class PersistenciaSuperAndes
 		}
 	}
 
+
+
+
 	public List<Object[]> consultarConsumoO( long cod,String fecha1,String fecha2, String arg,String orden){
 		return sqlProductoVendido.consultarConsumoO(pmf.getPersistenceManager(), cod, fecha1, fecha2, arg, orden);
 	}
+
 
 	public List<Object[]> consultarConsumoA( long cod,String fecha1,String fecha2, String arg,String orden){
 		return sqlProductoVendido.consultarConsumoA(pmf.getPersistenceManager(), cod, fecha1, fecha2, arg, orden);
@@ -538,6 +541,34 @@ public class PersistenciaSuperAndes
 	public List<Object[]> buenosClientes2( ){
 		return sqlProductoVendido.buenosClientes2(pmf.getPersistenceManager());
 	}
+
+	/* ****************************************************************
+	 * 			Requerimientos de consulta 11 al 12
+	 *			Iteración 4 - it4
+	 *****************************************************************/
+	public List<Object[]> consultarConsumoV2(String codigoDeBarras, String fecha1, String fecha2, String orden) {
+		return sqlProductoVendido.consultarConsumoV2(pmf.getPersistenceManager(), codigoDeBarras, fecha1, fecha2, orden);
+	}
+
+	public List<Object[]> consultarFuncionamiento(String fecha1, String fecha2) {
+		return sqlFactura.masVendido(pmf.getPersistenceManager(), fecha1, fecha2);
+	}
+	public List<Object[]> consultarFuncionamiento2(String fecha1, String fecha2) {
+
+		return sqlFactura.menosVendido(pmf.getPersistenceManager(), fecha1, fecha2);
+
+	}
+
+	public List<Object[]> consultarProveedoresMenosSolicitados(String fecha1, String fecha2) {
+
+		return sqlOrdenPedido.consultarProveedoresMenosSolicitados(pmf.getPersistenceManager(), fecha1, fecha2);
+	}
+
+	public List<Object[]> consultarProveedoresMasSolicitados(String fecha1, String fecha2) {
+		return sqlOrdenPedido.consultarProveedoresMasSolicitados(pmf.getPersistenceManager(), fecha1, fecha2);
+	}
+
+
 	public OfertaNxM adicionarOfertaNxM( String codBarras, int unidades, String fecha, int n, int m)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
